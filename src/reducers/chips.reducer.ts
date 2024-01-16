@@ -13,7 +13,6 @@ function reducer(
     action: { type: keyof typeof chip_reducer_actions; payload: User }
 ) {
     const { type, payload } = action;
-    console.log('ACTION ',action)
     switch (type) {
         case chip_reducer_actions.SELECT_ACTION: {
             const filtered_non_selected = state.non_selected.filter(
