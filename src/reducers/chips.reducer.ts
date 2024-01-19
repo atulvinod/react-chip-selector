@@ -18,15 +18,26 @@ function reducer(
             const filtered_non_selected = state.non_selected.filter(
                 (element) => element.id != payload.id
             );
-            state.selected.push(payload);
-            return { ...state, non_selected: filtered_non_selected , highlighted: undefined};
+            return {
+                ...state,
+                selected: [...state.selected, payload],
+                non_selected: filtered_non_selected,
+                highlighted: undefined,
+            };
         }
         case chip_reducer_actions.DELETE_ACTION: {
             const filtered_selected_items = state.selected.filter(
                 (element) => element.id != payload.id
             );
-            state.non_selected.push(payload);
-            return { ...state, selected: filtered_selected_items ,highlighted: undefined};
+            return {
+                ...state,
+                non_selected:[
+                    ...state.non_selected,
+                    payload
+                ],
+                selected: filtered_selected_items,
+                highlighted: undefined,
+            }
         }
         case chip_reducer_actions.HIGHLIGHT_ACTION:
             return {...state, highlighted: payload}
